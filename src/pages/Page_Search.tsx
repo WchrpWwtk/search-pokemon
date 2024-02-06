@@ -3,22 +3,23 @@ import Content from "../components/Content";
 import SearchBar from "../components/SearchBar";
 import NotFound from "../components/NotFound";
 
+import { search } from "@/utils/search";
+
 const PageSearch: React.FC = () => {
-  const [mode, setMode] = useState("");
+  const [mode, setMode] = useState("list");
 
   const handleSearch = (searchTerm: string) => {
-    switch (searchTerm) {
-      case "not found": {
-        setMode("404");
-      }
-
+    switch (search(searchTerm)) {
       case "": {
         setMode("list");
         break;
       }
-
+      case "detail": {
+        setMode("detail");
+        break;
+      }
       default: {
-        setMode("");
+        setMode("not found");
       }
     }
   };
@@ -31,7 +32,7 @@ const PageSearch: React.FC = () => {
         break;
       }
 
-      case "404": {
+      case "not found": {
         component = <NotFound />;
         break;
       }
