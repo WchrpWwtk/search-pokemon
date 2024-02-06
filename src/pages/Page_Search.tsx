@@ -25,24 +25,19 @@ const PageSearch: React.FC = () => {
   };
 
   const renderContent = (mode: string) => {
-    let component = <></>;
     switch (mode) {
       case "list": {
-        component = <div>{"Pokemons List"}</div>;
-        break;
+        return <div>{"Pokemons List"}</div>;
       }
 
       case "not found": {
-        component = <NotFound />;
-        break;
+        return <NotFound />;
       }
 
       default: {
-        component = <div>{"Waiting for search..."}</div>;
+        return <div>{"Waiting for search..."}</div>;
       }
     }
-
-    return component;
   };
 
   return (
