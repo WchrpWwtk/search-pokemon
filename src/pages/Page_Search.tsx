@@ -4,12 +4,12 @@ import SearchBar from "../components/SearchBar";
 import NotFound from "../components/NotFound";
 
 const PageSearch: React.FC = () => {
-  const [mode, setMode] = useState("list");
+  const [mode, setMode] = useState("");
 
   const handleSearch = (searchTerm: string) => {
     switch (searchTerm) {
       case "not found": {
-        setMode("not found");
+        setMode("404");
       }
 
       case "": {
@@ -24,19 +24,24 @@ const PageSearch: React.FC = () => {
   };
 
   const renderContent = (mode: string) => {
+    let component = <></>;
     switch (mode) {
       case "list": {
-        return <div>{"Pokemons List"}</div>;
+        component = <div>{"Pokemons List"}</div>;
+        break;
       }
 
-      case "not found": {
-        return <NotFound />;
+      case "404": {
+        component = <NotFound />;
+        break;
       }
 
       default: {
-        return <div>{"Waiting for search..."}</div>;
+        component = <div>{"Waiting for search..."}</div>;
       }
     }
+
+    return component;
   };
 
   return (
