@@ -6,16 +6,26 @@ import {
   InputAdornment,
   InputLabel,
 } from "@mui/material";
-import { ChangeEvent } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 
 interface Props {
   onSearch: (searchTerm: string) => void;
 }
 
 const SearchBar: React.FC<Props> = ({ onSearch }) => {
+  const [term, setTerm] = useState<string>("");
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    onSearch(e.target.value);
+    setTerm(e.target.value);
+  };
+
+  const onEnterSearch = (e: KeyboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    if (e.key === "Enter") {
+      onSearch(term);
+    }
   };
 
   return (
@@ -29,6 +39,7 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
             </InputAdornment>
           }
           onChange={handleChange}
+          onKeyUp={onEnterSearch}
         />
       </FormControl>
     </Box>

@@ -1,49 +1,19 @@
-import { Fragment, useState } from "react";
-import Content from "../components/Content";
+import { Fragment } from "react";
 import SearchBar from "../components/SearchBar";
-import NotFound from "../components/NotFound";
 
 import { search } from "@/utils/search";
+import { useRouter } from "next/navigation";
 
 const PageSearch: React.FC = () => {
-  const [mode, setMode] = useState("list");
+  const router = useRouter();
 
   const handleSearch = (searchTerm: string) => {
-    switch (search(searchTerm)) {
-      case "": {
-        setMode("list");
-        break;
-      }
-      case "detail": {
-        setMode("detail");
-        break;
-      }
-      default: {
-        setMode("not found");
-      }
-    }
-  };
-
-  const renderContent = (mode: string) => {
-    switch (mode) {
-      case "list": {
-        return <div>{"Pokemons List"}</div>;
-      }
-
-      case "not found": {
-        return <NotFound />;
-      }
-
-      default: {
-        return <div>{"Waiting for search..."}</div>;
-      }
-    }
+    return router.push(`/${search(searchTerm)}`);
   };
 
   return (
     <Fragment>
       <SearchBar onSearch={handleSearch} />
-      <Content>{renderContent(mode)}</Content>
     </Fragment>
   );
 };
