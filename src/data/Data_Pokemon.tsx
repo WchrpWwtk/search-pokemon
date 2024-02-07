@@ -5,8 +5,8 @@ type skillType = {
 };
 
 type attacksType = {
-  fast: Array<skillType>;
-  special: Array<skillType>;
+  fast: skillType[];
+  special: skillType[];
 };
 
 type evolutionType = {
@@ -16,10 +16,10 @@ type evolutionType = {
 
 export type pokemonType = {
   name: string;
-  types: Array<string>;
+  types: string[];
   image: string;
   attacks: attacksType;
-  evolutions: Array<evolutionType>;
+  evolutions: evolutionType[];
 };
 
 export const pokemonEmpty = {

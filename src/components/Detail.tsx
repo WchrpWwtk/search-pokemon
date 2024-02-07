@@ -5,6 +5,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { pokemonEmpty } from "@/data/Data_Pokemon";
+import NotFound from "./NotFound";
 
 const COLLECTIONS = gql`
   query ($name: String!) {
@@ -43,28 +44,23 @@ const Detail = () => {
   });
 
   const [pokemon, setPokemon] = useState(pokemonEmpty);
+  const [component, setComponent] = useState(<></>);
 
   useEffect(() => {
     if (data) {
       const { pokemon } = data;
 
       setPokemon(pokemon);
-    } else {
-      console.log(error);
     }
   }, [data, error]);
 
   useEffect(() => {
-    if (pokemon !== pokemonEmpty) {
-      console.log(pokemon);
-    }
+    pokemon && pokemon !== pokemonEmpty
+      ? setComponent(<h1>{`You found ${pokemon.name}`}</h1>)
+      : setComponent(<NotFound />);
   }, [pokemon]);
 
-  return (
-    <Box>
-      {loading ? <CircularProgress /> : <h1>{"This is pokemon detail"}</h1>}
-    </Box>
-  );
+  return <Box>{loading ? <CircularProgress /> : component}</Box>;
 };
 
 export default Detail;
