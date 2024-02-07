@@ -1,3 +1,5 @@
+"use client";
+
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import Detail from "../../components/Detail";
 
