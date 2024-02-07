@@ -1,9 +1,14 @@
-import { Box } from "@mui/material";
+"use client";
+
+import { Box, CircularProgress } from "@mui/material";
 import { gql, useQuery } from "@apollo/client";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { pokemonEmpty } from "@/data/Data_Pokemon";
 
 const COLLECTIONS = gql`
-  query {
-    pokemon {
+  query ($name: String!) {
+    pokemon(name: $name) {
       name
       types
       image
@@ -19,7 +24,7 @@ const COLLECTIONS = gql`
           damage
         }
       }
-      evolution {
+      evolutions {
         id
         name
         image
@@ -29,9 +34,37 @@ const COLLECTIONS = gql`
 `;
 
 const Detail = () => {
-  const { loading, error, data } = useQuery(COLLECTIONS);
+  const name = usePathname().replace("/", "");
 
-  return <Box>{"This is pokemon detail"}</Box>;
+  const { loading, error, data } = useQuery(COLLECTIONS, {
+    variables: {
+      name: name,
+    },
+  });
+
+  const [pokemon, setPokemon] = useState(pokemonEmpty);
+
+  useEffect(() => {
+    if (data) {
+      const { pokemon } = data;
+
+      setPokemon(pokemon);
+    } else {
+      console.log(error);
+    }
+  }, [data, error]);
+
+  useEffect(() => {
+    if (pokemon !== pokemonEmpty) {
+      console.log(pokemon);
+    }
+  }, [pokemon]);
+
+  return (
+    <Box>
+      {loading ? <CircularProgress /> : <h1>{"This is pokemon detail"}</h1>}
+    </Box>
+  );
 };
 
 export default Detail;

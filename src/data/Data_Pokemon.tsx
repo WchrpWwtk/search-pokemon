@@ -1,111 +1,34 @@
-type Pokemon = {
-  number: string;
+type skillType = {
   name: string;
-  weight: {
-    minimum: string;
-    maximum: string;
-  };
-  height: {
-    minimum: string;
-    maximum: string;
-  };
-  classification: string;
-  types: Array<string>;
-  resistant: Array<string>;
-  attacks: {
-    fast: Array<{
-      name: string;
-      type: string;
-      damage: number;
-    }>;
-    special: Array<{
-      name: string;
-      type: string;
-      damage: number;
-    }>;
-  };
-  weaknesses: Array<string>;
-  fleeRate: number;
-  maxCP: number;
-  evolutions: [
-    {
-      number: string;
-      name: string;
-      weight: {
-        minimum: string;
-        maximum: string;
-      };
-      height: {
-        minimum: string;
-        maximum: string;
-      };
-      classification: string;
-      types: Array<string>;
-      resistant: Array<string>;
-      attacks: {
-        fast: Array<{
-          name: string;
-          type: string;
-          damage: number;
-        }>;
-        special: Array<{
-          name: string;
-          type: string;
-          damage: number;
-        }>;
-      };
-      weaknesses: Array<string>;
-      fleeRate: number;
-      maxCP: "number";
-      evolutions: [
-        {
-          number: string;
-          name: string;
-          weight: {
-            minimum: string;
-            maximum: string;
-          };
-          height: {
-            minimum: string;
-            maximum: string;
-          };
-          classification: string;
-          types: Array<string>;
-          resistant: Array<string>;
-          attacks: {
-            fast: Array<{
-              name: string;
-              type: string;
-              damage: number;
-            }>;
-            special: Array<null>;
-          };
-        }
-      ];
-    }
-  ];
+  type: string;
+  damage: number;
 };
 
-let empty = {
-  number: -1,
+type attacksType = {
+  fast: Array<skillType>;
+  special: Array<skillType>;
+};
+
+type evolutionType = {
+  name: string;
+  image: string;
+};
+
+export type pokemonType = {
+  name: string;
+  types: Array<string>;
+  image: string;
+  attacks: attacksType;
+  evolutions: Array<evolutionType>;
+};
+
+export const pokemonEmpty = {
   name: "",
-  weight: {
-    minimum: "",
-    maximum: "",
-  },
-  height: {
-    minimum: "",
-    maximum: "",
-  },
-  classification: "",
   types: [],
-  resistant: [],
+  image: "",
   attacks: {
     fast: [],
     special: [],
   },
-  weaknesses: [],
-  fleeRate: 0,
-  maxCP: 0,
   evolutions: [],
 };
