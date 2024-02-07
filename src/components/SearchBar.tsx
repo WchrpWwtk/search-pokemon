@@ -1,3 +1,5 @@
+"use client";
+
 import { Search } from "@mui/icons-material";
 import {
   Box,
@@ -7,12 +9,12 @@ import {
   InputLabel,
 } from "@mui/material";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { search } from "@/utils/search";
 
-interface Props {
-  onSearch: (searchTerm: string) => void;
-}
+const SearchBar: React.FC = () => {
+  const router = useRouter();
 
-const SearchBar: React.FC<Props> = ({ onSearch }) => {
   const [term, setTerm] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +26,7 @@ const SearchBar: React.FC<Props> = ({ onSearch }) => {
     e.preventDefault();
 
     if (e.key === "Enter") {
-      onSearch(term);
+      router.push(`/${search(term)}`);
     }
   };
 
