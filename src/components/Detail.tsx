@@ -1,47 +1,16 @@
 "use client";
 
 import { Box, CircularProgress } from "@mui/material";
-import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { pokemonEmpty } from "@/data/Data_Pokemon";
+import { pokemonEmpty } from "@/data/dataPokemon";
 import NotFound from "./NotFound";
-
-const COLLECTIONS = gql`
-  query ($name: String!) {
-    pokemon(name: $name) {
-      name
-      types
-      image
-      attacks {
-        fast {
-          name
-          type
-          damage
-        }
-        special {
-          name
-          type
-          damage
-        }
-      }
-      evolutions {
-        id
-        name
-        image
-      }
-    }
-  }
-`;
+import useQueryPokemon from "@/graphql/hooks/pokemon";
 
 const Detail = () => {
   const name = usePathname().replace("/", "");
 
-  const { loading, error, data } = useQuery(COLLECTIONS, {
-    variables: {
-      name: name,
-    },
-  });
+  const { loading, error, data } = useQueryPokemon(name);
 
   const [pokemon, setPokemon] = useState(pokemonEmpty);
   const [component, setComponent] = useState(<></>);
