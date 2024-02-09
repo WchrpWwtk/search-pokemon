@@ -7,7 +7,7 @@ const cases = [
 ];
 
 describe("normalized search", () => {
-  test.each(cases)("search with whitespace to equal no whitespace", () => {
-    expect(search(" bulbasaur ")).toBe("bulbasaur");
+  test.each(cases)("search with whitespace to equal no whitespace", (term, result) => {
+    expect(search(term)).toBe(result);
   });
 });

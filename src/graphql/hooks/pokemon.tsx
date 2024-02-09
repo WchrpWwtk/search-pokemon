@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-const COLLECTIONS = gql`
+export const COLLECTIONS = gql`
   query ($name: String!) {
     pokemon(name: $name) {
       name
