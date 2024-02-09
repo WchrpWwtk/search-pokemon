@@ -16,12 +16,11 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { attacksType, pokemonEmpty, skillType } from "@/data/dataPokemon";
+import { pokemonEmpty, skillType } from "@/data/dataPokemon";
 import NotFound from "./NotFound";
 import useQueryPokemon from "@/graphql/hooks/pokemon";
 import PokemonAvatar from "./PokemonAvatar";
 import { ExpandMoreOutlined } from "@mui/icons-material";
-import { pokemonType } from "../data/dataPokemon";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
