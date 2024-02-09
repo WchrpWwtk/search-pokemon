@@ -1,15 +1,15 @@
-type skillType = {
+export type skillType = {
   name: string;
   type: string;
   damage: number;
 };
 
-type attacksType = {
+export type attacksType = {
   fast: skillType[];
   special: skillType[];
 };
 
-type evolutionType = {
+export type evolutionType = {
   name: string;
   image: string;
 };

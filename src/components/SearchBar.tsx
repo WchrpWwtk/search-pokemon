@@ -3,6 +3,7 @@
 import { Search } from "@mui/icons-material";
 import {
   Box,
+  Button,
   FormControl,
   Input,
   InputAdornment,
@@ -31,7 +32,7 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <Box sx={{ m: 2 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 2, m: 2 }}>
       <FormControl variant="standard">
         <InputLabel>{"Search Pokemon"}</InputLabel>
         <Input
@@ -44,6 +45,13 @@ const SearchBar: React.FC = () => {
           onKeyUp={onEnterSearch}
         />
       </FormControl>
+      <Button
+        onClick={(_) => router.push(`/${search(term)}`)}
+        variant="contained"
+        color="info"
+      >
+        {"Search Pokemon!"}
+      </Button>
     </Box>
   );
 };
