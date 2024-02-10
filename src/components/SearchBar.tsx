@@ -1,22 +1,23 @@
 "use client";
 
-import { Search } from "@mui/icons-material";
+import { CancelOutlined, Search } from "@mui/icons-material";
 import {
   Box,
   Button,
   FormControl,
+  IconButton,
   Input,
   InputAdornment,
   InputLabel,
 } from "@mui/material";
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { search } from "@/utils/search";
 
 const SearchBar: React.FC = () => {
   const router = useRouter();
 
-  const [term, setTerm] = useState<string>("");
+  const [term, setTerm] = useState<string>(usePathname().replace("/", ""));
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -41,8 +42,18 @@ const SearchBar: React.FC = () => {
               <Search />
             </InputAdornment>
           }
+          endAdornment={
+            term === "" ? (
+              <></>
+            ) : (
+              <IconButton onClick={(_) => setTerm("")}>
+                <CancelOutlined />
+              </IconButton>
+            )
+          }
           onChange={handleChange}
           onKeyUp={onEnterSearch}
+          value={term}
         />
       </FormControl>
       <Button
