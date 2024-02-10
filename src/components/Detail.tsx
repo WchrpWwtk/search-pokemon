@@ -172,7 +172,13 @@ const Detail = () => {
     return pokemon ? (
       <Box>
         <Card
-          sx={{ minWidth: 325, maxWidth: 800, width: "100%", padding: "5%" }}
+          sx={{
+            minWidth: 325,
+            maxWidth: 800,
+            width: "100%",
+            padding: "5%",
+            borderRadius: "2rem",
+          }}
         >
           <CardHeader
             title={pokemon.name}
