@@ -30,7 +30,7 @@ interface ExpandMoreProps extends IconButtonProps {
 const Detail = () => {
   const name = usePathname().replace("/", "");
 
-  const { loading, error, data } = useQueryPokemon(name);
+  const { loading, _, data } = useQueryPokemon(name);
 
   const [pokemon, setPokemon] = useState(pokemonEmpty);
   const [component, setComponent] = useState(<Fragment />);
@@ -208,14 +208,8 @@ const Detail = () => {
   }, [data]);
 
   useEffect(() => {
-    pokemon && pokemon !== pokemonEmpty
-      ? setComponent(buildComponent())
-      : setComponent(<NotFound />);
-  }, [pokemon]);
-
-  useEffect(() => {
-    setComponent(buildComponent());
-  }, [expandSkills, expandEvolutions]);
+    pokemon ? setComponent(buildComponent()) : setComponent(<NotFound />);
+  }, [pokemon, expandSkills, expandEvolutions]);
 
   return <Box>{loading ? <CircularProgress /> : component}</Box>;
 };
