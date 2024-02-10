@@ -117,11 +117,11 @@ const Detail = () => {
       return (
         <CardContent sx={{ display: "grid", gap: 2 }}>
           <Typography variant="h4" component="div">
-            {"Fast attack"}
+            {"Fast Attack"}
           </Typography>
           {fast}
           <Typography variant="h4" component="div">
-            {"Special attack"}
+            {"Special Attack"}
           </Typography>
           {special}
         </CardContent>
