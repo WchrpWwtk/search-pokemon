@@ -139,7 +139,7 @@ const Detail = () => {
 
       return (
         <CardContent sx={{ width: "100%" }}>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {"Evolutions"}
             <ExpandMore
               name="evolutions"
