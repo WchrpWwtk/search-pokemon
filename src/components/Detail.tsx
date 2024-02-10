@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { pokemonEmpty, skillType } from "@/data/dataPokemon";
 import NotFound from "./NotFound";
-import useQueryPokemon from "@/graphql/hooks/pokemon";
+import useQueryPokemon from "@/graphql/pokemon";
 import PokemonAvatar from "./PokemonAvatar";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 
@@ -69,19 +69,21 @@ const Detail = () => {
       const fast = pokemon.attacks.fast ? (
         pokemon.attacks.fast.map((attack: skillType, index) => {
           return (
-            <CardContent key={`fast-${index}`}>
-              <Typography variant="h5" component="div">
-                {attack.name}
-              </Typography>
-              <Typography
-                variant="h6"
-                component="div"
-              >{`type: ${attack.type}`}</Typography>
-              <Typography
-                variant="h6"
-                component="div"
-              >{`damage: ${attack.damage}`}</Typography>
-            </CardContent>
+            <Card key={`fast-${index}`}>
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  {attack.name}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  component="div"
+                >{`type: ${attack.type}`}</Typography>
+                <Typography
+                  variant="h6"
+                  component="div"
+                >{`damage: ${attack.damage}`}</Typography>
+              </CardContent>
+            </Card>
           );
         })
       ) : (
@@ -91,19 +93,21 @@ const Detail = () => {
       const special = pokemon.attacks.special ? (
         pokemon.attacks.special.map((attack: skillType, index) => {
           return (
-            <CardContent key={`special-${index}`}>
-              <Typography variant="h5" component="div">
-                {attack.name}
-              </Typography>
-              <Typography
-                variant="h6"
-                component="div"
-              >{`type: ${attack.type}`}</Typography>
-              <Typography
-                variant="h6"
-                component="div"
-              >{`damage: ${attack.damage}`}</Typography>
-            </CardContent>
+            <Card key={`special-${index}`}>
+              <CardContent>
+                <Typography variant="h5" component="div">
+                  {attack.name}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  component="div"
+                >{`type: ${attack.type}`}</Typography>
+                <Typography
+                  variant="h6"
+                  component="div"
+                >{`damage: ${attack.damage}`}</Typography>
+              </CardContent>
+            </Card>
           );
         })
       ) : (
@@ -111,7 +115,7 @@ const Detail = () => {
       );
 
       return (
-        <CardContent>
+        <CardContent sx={{ display: "grid", gap: 2 }}>
           <Typography variant="h4" component="div">
             {"Fast attack"}
           </Typography>
@@ -167,7 +171,9 @@ const Detail = () => {
   const buildComponent = () => {
     return pokemon ? (
       <Box>
-        <Card sx={{ minWidth: 325, maxWidth: 800, width: "100%" }}>
+        <Card
+          sx={{ minWidth: 325, maxWidth: 800, width: "100%", padding: "3%" }}
+        >
           <CardHeader
             title={pokemon.name}
             subheader={pokemon.types ? pokemon.types.toString() : ""}
