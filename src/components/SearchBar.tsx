@@ -10,7 +10,7 @@ import {
   InputAdornment,
   InputLabel,
 } from "@mui/material";
-import { ChangeEvent, KeyboardEvent, useState } from "react";
+import { ChangeEvent, Fragment, KeyboardEvent, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { search } from "@/utils/search";
 
@@ -44,7 +44,7 @@ const SearchBar: React.FC = () => {
           }
           endAdornment={
             term === "" ? (
-              <></>
+              <Fragment />
             ) : (
               <IconButton onClick={(_) => setTerm("")}>
                 <CancelOutlined />

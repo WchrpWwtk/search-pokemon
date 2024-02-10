@@ -15,7 +15,7 @@ import {
   IconButtonProps,
   Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { pokemonEmpty, skillType } from "@/data/dataPokemon";
 import NotFound from "./NotFound";
@@ -33,7 +33,7 @@ const Detail = () => {
   const { loading, error, data } = useQueryPokemon(name);
 
   const [pokemon, setPokemon] = useState(pokemonEmpty);
-  const [component, setComponent] = useState(<></>);
+  const [component, setComponent] = useState(<Fragment />);
   const [expandSkills, setExpandSkills] = useState(false);
   const [expandEvolutions, setExpandEvolutions] = useState(false);
 
@@ -87,7 +87,7 @@ const Detail = () => {
           );
         })
       ) : (
-        <></>
+        <Fragment />
       );
 
       const special = pokemon.attacks.special ? (
@@ -111,7 +111,7 @@ const Detail = () => {
           );
         })
       ) : (
-        <></>
+        <Fragment />
       );
 
       return (
@@ -127,7 +127,7 @@ const Detail = () => {
         </CardContent>
       );
     } else {
-      return <></>;
+      return <Fragment />;
     }
   };
 
@@ -164,7 +164,7 @@ const Detail = () => {
         </CardContent>
       );
     } else {
-      return <></>;
+      return <Fragment />;
     }
   };
 
