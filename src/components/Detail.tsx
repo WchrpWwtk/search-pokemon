@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { styled } from "@mui/material/styles";
@@ -133,26 +134,30 @@ const Detail = () => {
       });
 
       return (
-        <>
+        <CardContent sx={{ width: "100%" }}>
           <Typography gutterBottom variant="h5" component="div">
             {"Evolutions"}
+            <ExpandMore
+              name="evolutions"
+              expand={expandEvolutions}
+              onClick={(event) => {
+                const name = event.currentTarget.name;
+                handleExpandClick(name);
+              }}
+              aria-expanded={expandEvolutions}
+              aria-label="show evolutions"
+            >
+              <ExpandMoreOutlined />
+            </ExpandMore>
           </Typography>
-          <ExpandMore
-            name="evolutions"
-            expand={expandEvolutions}
-            onClick={(event) => {
-              const name = event.currentTarget.name;
-              handleExpandClick(name);
-            }}
-            aria-expanded={expandEvolutions}
-            aria-label="show evolutions"
-          >
-            <ExpandMoreOutlined />
-          </ExpandMore>
           <Collapse in={expandEvolutions} timeout="auto" unmountOnExit>
-            <CardContent>{evolutions}</CardContent>
+            <CardContent
+              sx={{ display: "flex", justifyContent: "space-evenly" }}
+            >
+              {evolutions}
+            </CardContent>
           </Collapse>
-        </>
+        </CardContent>
       );
     } else {
       return <></>;
@@ -162,7 +167,7 @@ const Detail = () => {
   const buildComponent = () => {
     return pokemon ? (
       <Box>
-        <Card sx={{ minWidth: 345 }}>
+        <Card sx={{ maxWidth: 800, width: "100%" }}>
           <CardHeader
             title={pokemon.name}
             subheader={pokemon.types ? pokemon.types.toString() : ""}
