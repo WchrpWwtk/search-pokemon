@@ -205,10 +205,12 @@ const Detail = () => {
 
       setPokemon(pokemon);
     }
-  }, [data, error]);
+  }, [data]);
 
   useEffect(() => {
-    pokemon ? setComponent(buildComponent()) : setComponent(<NotFound />);
+    pokemon && pokemon !== pokemonEmpty
+      ? setComponent(buildComponent())
+      : setComponent(<NotFound />);
   }, [pokemon]);
 
   useEffect(() => {
