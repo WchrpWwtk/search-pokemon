@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "test": "jest --config"
+    "test": "jest --config jest.config.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",
