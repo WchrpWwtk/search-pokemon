@@ -1,4 +1,4 @@
-import useQueryPokemon, { COLLECTIONS } from "@/graphql/hooks/pokemon";
+import useQueryPokemon, { COLLECTIONS } from "@/graphql/hooks/pokemonHook";
 import { ApolloError } from "@apollo/client";
 import { MockedProvider, MockedResponse } from "@apollo/client/testing";
 import { renderHook } from "@testing-library/react";

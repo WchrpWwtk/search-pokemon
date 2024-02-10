@@ -19,7 +19,7 @@ import { Fragment, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { pokemonEmpty, skillType } from "@/data/dataPokemon";
 import NotFound from "./NotFound";
-import useQueryPokemon from "@/graphql/hooks/pokemon";
+import useQueryPokemon from "@/graphql/hooks/pokemonHook";
 import PokemonAvatar from "./PokemonAvatar";
 import { ExpandMoreOutlined } from "@mui/icons-material";
 
