@@ -167,7 +167,7 @@ const Detail = () => {
   const buildComponent = () => {
     return pokemon ? (
       <Box>
-        <Card sx={{ maxWidth: 800, width: "100%" }}>
+        <Card sx={{ minWidth: 325, maxWidth: 800, width: "100%" }}>
           <CardHeader
             title={pokemon.name}
             subheader={pokemon.types ? pokemon.types.toString() : ""}
