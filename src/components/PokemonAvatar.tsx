@@ -13,7 +13,7 @@ const PokemonAvatar = ({ data }: PokemonAvatarProps) => {
 
   return (
     <Tooltip title={data.name}>
-      <Button onClick={_ => router.push(`/${data.name}`)}>
+      <Button onClick={(_) => router.push(`/${data.name.toLowerCase()}`)}>
         <Avatar
           sx={{ width: 80, height: 80 }}
           alt={data.name}
